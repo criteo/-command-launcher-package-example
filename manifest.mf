@@ -1,0 +1,41 @@
+name: command-launcher-example-package
+version: 0.0.1
+cmds:
+  # you can create a group command as a parent command
+  - name: cola-example
+    type: group
+    short: command launcher example commands
+    long: |
+      Demonstration commands for command launcher.
+
+  # bare minimum command
+  - name: ls
+    group: cola-example # leave group empty if you want to register it as a top level command
+    type: executable
+    executable: ls
+
+  # pre-attached arguments, you can force some arguments to be applied when calling one command
+  - name: myls
+    group: cola-example
+    type: executable
+    short: ls wrapper
+    long: |
+      A wrapper command of 'ls', which always applies the '-la' option
+
+    executable: ls
+    # -la will always applied to ls command when myls is called
+    # other arguments are appended to it if passed from command launcher
+    args: [ "-la" ]
+
+  # reference executables(binaries/scripts) in package
+  - name: greeting
+    group: cola-example
+    type: executable
+    short: print greeting message
+    long: |
+      Print greeting message with different language
+    executable: "{{.PackageDir}}/scripts/greeting.sh"
+
+
+
+
