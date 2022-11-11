@@ -1,4 +1,4 @@
-name: command-launcher-example-package
+pkgName: command-launcher-example-package
 version: 0.0.1
 cmds:
   # you can create a group command as a parent command
